@@ -1,0 +1,8 @@
+.env
+
+.idea/
+/slim/vendor
+/slim/.env
+/docker/data
+/docker/mysqldata
+/nuxt/node_modules

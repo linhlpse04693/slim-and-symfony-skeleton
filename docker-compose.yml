@@ -1,0 +1,36 @@
+version: '3.5'
+services:
+  slim:
+    build:
+      context: ./docker/php
+      args:
+        uid: ${UID}
+    volumes:
+      - ./slim:/var/www/html
+    environment:
+      - APACHE_RUN_USER=#${UID}
+      - APACHE_RUN_GROUP=#${UID}
+    ports:
+      - 8000:80
+    networks:
+      backend:
+        aliases:
+          - "network"
+
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - ./docker/mysqldata:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=slim
+    networks:
+      backend:
+        aliases:
+          - "network"
+
+networks:
+  backend:
+    name: backend-network
