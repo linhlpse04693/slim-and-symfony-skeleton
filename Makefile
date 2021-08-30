@@ -1,7 +1,6 @@
 
-build: ## build develoment environment
+build: ## build development environment
 	cp .env.example .env
-	# cp ./nuxt/.env.example ./nuxt/.env
 	cp ./slim/.env.example ./slim/.env
 	docker-compose build
 	docker-compose run --rm slim composer install
