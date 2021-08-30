@@ -4,7 +4,6 @@ build: ## build development environment
 	cp ./slim/.env.example ./slim/.env
 	docker-compose build
 	docker-compose run --rm slim composer install
-	docker-compose run --rm slim cp .env.example .env
 serve:
 	docker-compose up -d
 stop:
