@@ -13,5 +13,3 @@ stop:
 down:
 	docker-compose down -v
 migrate:
-	docker-compose run --rm slim php artisan migrate
-	docker-compose run --rm slim php artisan db:seed
