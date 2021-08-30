@@ -4,6 +4,24 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
+if (!function_exists('env')) {
+    function env(string $key, $default = false): string
+    {
+        $value = getenv($key);
+
+        throw_when((!$value && !$default), "$key is not defined in .env and has no default value");
+
+        return $value || $default;
+    }
+}
+
+if (!function_exists('database_path')) {
+    function database_path($path = ''): string
+    {
+        return base_path("database/{$path}");
+    }
+}
+
 if (!function_exists('base_path')) {
     function base_path($path = ''): string
     {

@@ -1,11 +1,17 @@
 <?php
 
-use App\Providers\MiddlewareServiceProvider;
+use App\Providers\DatabaseServiceProvider;
+use App\Providers\RepositoryServiceProvider;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Database\Capsule\Manager;
 
 return [
     'providers' => [
+        DatabaseServiceProvider::class,
+        RepositoryServiceProvider::class,
         RouteServiceProvider::class,
-        MiddlewareServiceProvider::class,
-    ]
+    ],
+    'aliases' => [
+        'DB' => Manager::class
+    ],
 ];

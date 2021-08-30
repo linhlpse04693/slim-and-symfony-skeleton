@@ -2,7 +2,7 @@
 
 return [
     'error' => [
-        'displayErrorDetails' => true,
+        'displayErrorDetails' => env('APP_DEBUG', false),
         'logErrors' => true,
         'logErrorDetails' => true,
     ],
