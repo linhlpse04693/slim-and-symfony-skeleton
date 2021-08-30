@@ -1,4 +1,3 @@
-
 build: ## build development environment
 	cp .env.example .env
 	cp ./slim/.env.example ./slim/.env
