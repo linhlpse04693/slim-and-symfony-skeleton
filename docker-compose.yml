@@ -13,9 +13,9 @@ services:
     ports:
       - 8000:80
     networks:
-      backend:
+      default:
         aliases:
-          - "network"
+          - "default"
 
   mysql:
     image: mysql:5.7
@@ -27,10 +27,10 @@ services:
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_DATABASE=slim
     networks:
-      backend:
+      default:
         aliases:
-          - "network"
+          - "default"
 
 networks:
-  backend:
+  default:
     name: backend-network

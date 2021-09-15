@@ -7,14 +7,16 @@ use Boot\Foundation\Bootstrapers\LoadAliases;
 use Boot\Foundation\Bootstrapers\LoadEnv;
 use Boot\Foundation\Bootstrapers\LoadHttpMiddleware;
 use Boot\Foundation\Bootstrapers\LoadServiceProviders;
-use Boot\Foundation\Kernel as HttpKernel;
+use Boot\Foundation\Kernel as AppKernel;
 
-class Kernel extends HttpKernel
+class Kernel extends AppKernel
 {
     public array $middleware = [];
 
     public array $middlewareGroups = [
-        'api' => [TestMiddleware::class],
+        'api' => [
+            TestMiddleware::class,
+        ],
     ];
 
     public array $bootstrap = [

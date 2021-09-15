@@ -1,0 +1,11 @@
+#!/usr/bin/env php
+
+<?php
+
+$app = require __DIR__ . '/bootstrap/console.php';
+
+$console = $app->resolve(\Symfony\Component\Console\Application::class);
+
+$console->run();
+
+exit();

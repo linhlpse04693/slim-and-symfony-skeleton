@@ -16,7 +16,7 @@ class WelcomeController
 
     public function index(Response $response): Response
     {
-        $response->getBody()->write('welcome');
+        $response->getBody()->write('welcome???????????');
 
         return $response;
     }
