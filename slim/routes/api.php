@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Middleware\TestMiddleware;
 use App\Support\Route;
 use App\Http\Controllers\WelcomeController;
 use Slim\Routing\RouteCollectorProxy;
