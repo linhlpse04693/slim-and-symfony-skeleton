@@ -2,31 +2,40 @@
 
 namespace Boot\Foundation;
 
-use Boot\Foundation\Bootstrapers\Bootstraper;
-use Slim\App;
-
 abstract class Kernel
 {
-    protected App $app;
+    public $app;
 
-    protected array $bootstrap = [];
+    /**
+     * Register application Bootstrap Loaders
+     *
+     * @var array
+     */
+    public array $bootstrappers = [];
 
-    public function __construct(App &$app)
+
+    public function __construct(&$app)
     {
         $this->app = $app;
-
-        $this->app->getContainer()->set(self::class, $this);
-
-        Bootstraper::setup($this->app, $this->bootstrap);
     }
 
-    public function getApplication(): App
+    public function bootstrapApplication()
+    {
+        $app = $this->getApp();
+        $kernel = $this->getKernel();
+        $bootstrappers = $this->bootstrappers;
+
+        Bootstrappers\Bootstrapper::setup($app, $kernel, $bootstrappers);
+    }
+
+    public function getKernel()
+    {
+        return $this;
+    }
+
+    public function getApp()
     {
         return $this->app;
     }
 
-    public static function bootstrap(App &$app): Kernel
-    {
-        return new static($app);
-    }
 }

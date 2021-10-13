@@ -11,11 +11,26 @@ services:
       - APACHE_RUN_USER=#${UID}
       - APACHE_RUN_GROUP=#${UID}
     ports:
-      - 8000:80
+      - "8000:80"
     networks:
       default:
         aliases:
           - "default"
+
+  nuxt:
+    image: node:latest
+    working_dir: /home/node/app
+    volumes:
+      - ./nuxt:/home/node/app
+    ports:
+      - "3000:3000"
+    environment:
+      - HOST=0.0.0.0
+    networks:
+      default:
+        aliases:
+          - "default"
+    command: bash -c "yarn install && yarn dev"
 
   mysql:
     image: mysql:5.7

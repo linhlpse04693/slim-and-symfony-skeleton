@@ -1,17 +1,28 @@
 {
+  "keywords": [
+    "Php",
+    "Slim 4",
+    "Php Authentication",
+    "Slim 4 Authentication"
+  ],
   "require": {
     "slim/slim": "4.*",
-    "slim/psr7": "^1.4",
-    "php-di/php-di": "^6.3",
-    "php": "7.4.*",
+    "slim/psr7": "^1.0",
+    "php-di/php-di": "^6.0",
+    "php": "^7.4",
     "ext-curl": "*",
     "ext-json": "*",
     "php-di/slim-bridge": "^3.0",
-    "illuminate/support": "^8.56",
-    "illuminate/database": "^8.56",
-    "vlucas/phpdotenv": "^5.3",
+    "illuminate/support": "^7.0.0",
+    "illuminate/database": "^7.4",
+    "vlucas/phpdotenv": "^4.1",
+    "robmorgan/phinx": "^0.11.5",
+    "slim/csrf": "^1.0",
+    "illuminate/validation": "^7.6",
+    "guzzlehttp/guzzle": "^6.5",
+    "illuminate/mail": "^7.7",
     "ext-pdo": "*",
-    "robmorgan/phinx": "^0.12.7"
+    "firebase/php-jwt": "^5.4"
   },
   "autoload": {
     "files": [
@@ -21,5 +32,13 @@
       "App\\": "app",
       "Boot\\": "bootstrap"
     }
+  },
+  "scripts": {
+    "post-root-package-install": [
+      "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+    ]
+  },
+  "require-dev": {
+    "laravel/homestead": "^10.7"
   }
 }

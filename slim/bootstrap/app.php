@@ -1,16 +1,26 @@
 <?php
 
-use App\Http\Kernel;
-use DI\ContainerBuilder;
-use DI\Bridge\Slim\Bridge as SlimFactory;
+use Boot\Foundation\AppFactoryBridge;
+use DI\Container;
+use App\Http\HttpKernel;
+use Slim\Exception\HttpNotFoundException;
 
-$builder = new ContainerBuilder();
+$app = AppFactoryBridge::create(new Container);
 
-try {
-    $container = $builder->build();
-    $app = SlimFactory::create($container);
+$http_kernel = new HttpKernel($app);
 
-    return Kernel::bootstrap($app)->getApplication();
-} catch (Exception $e) {
-    //
+$app->bind(HttpKernel::class, $http_kernel);
+
+$_SERVER['app'] = &$app;
+
+if (!function_exists('app'))
+{
+    function app()
+    {
+        return $_SERVER['app'];
+    }
 }
+
+$app->addRoutingMiddleware();
+
+return $app;

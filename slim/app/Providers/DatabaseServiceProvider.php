@@ -6,23 +6,21 @@ use DB;
 
 class DatabaseServiceProvider extends ServiceProvider
 {
-
     public function register()
     {
-        $options = data_get(config('database.connections'), config('database.default'));
 
-        $capsule = new DB;
-        $capsule->addConnection($options);
+        $default = config('database.default');
+        $connections = config('database.connections');
+        $capsule = app()->make(DB::class);
+        $capsule->addConnection(data_get($connections, $default));
         $capsule->setAsGlobal();
         $capsule->bootEloquent();
 
-        $this->bind(DB::class, function () use ($capsule) {
-            return $capsule;
-        });
+        $this->bind(DB::class, fn () => $capsule);
     }
 
     public function boot()
     {
-        // TODO: Implement boot() method.
+        //
     }
 }

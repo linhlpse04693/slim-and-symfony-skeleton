@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Model
 {
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
+        'email'
     ];
 
     protected $guarded = [
-        'password',
+        'password'
     ];
 }
