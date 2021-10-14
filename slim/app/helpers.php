@@ -6,7 +6,6 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
 /*
  * event
- * old
  * back
  * session
  * validator
@@ -29,26 +28,6 @@ use Illuminate\Support\Collection;
  * data_get
  * data_set
  */
-
-if (!function_exists('event'))
-{
-    function event() : \Boot\Foundation\Events\Dispatcher
-    {
-        return app()->resolve('events');
-    }
-}
-
-if (!function_exists('back'))
-{
-    function back()
-    {
-        $route = app()->resolve(\App\Support\RequestInput::class);
-
-        $back = $route->getCurrentUri();
-
-        return redirect($back);
-    }
-}
 
 if (!function_exists('validator'))
 {
